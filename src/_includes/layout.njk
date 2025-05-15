@@ -1,34 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>{{ title or "Panos Tsomakos" }}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/assets/styles.css">
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
-
-<header>
-  <nav>
+  <header>
     <h1>PANOS TSOMAKOS</h1>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/private/">Private</a></li>
-      <li><a href="#">Commissioned ▾</a>
-        <ul>
-          {% for item in collections.commissioned %}
-            <li><a href="{{ item.url }}">{{ item.data.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </li>
-      <li><a href="/about/">ⓘ</a></li>
-    </ul>
-  </nav>
-</header>
+    <nav>
+      <a href="/private/">PRIVATE</a>
+      <a href="#" id="commissioned-toggle">COMMISSIONED</a>
+      <ul id="commissioned-menu" style="display:none;">
+        {% for project in collections.projects %}
+          <li><a href="{{ project.url }}">{{ project.data.title }}</a></li>
+        {% endfor %}
+      </ul>
+    </nav>
+  </header>
 
-<main>
-  {{ content | safe }}
-</main>
+  <main>
+    {{ content | safe }}
+  </main>
 
+  <script>
+    const toggle = document.getElementById('commissioned-toggle');
+    const menu = document.getElementById('commissioned-menu');
+    toggle.addEventListener('click', () => {
+      menu.style.display = (menu.style.display === 'none') ? 'block' : 'none';
+    });
+  </script>
 </body>
 </html>
