@@ -4,8 +4,8 @@ title: Pressure Clothes SS 23
 tags: projects
 order: 1
 images:
-  - /assets/images/pressure1.jpg
-  - /assets/images/pressure2.jpg
+  - /assets/images/projects/pressure/pressure1.png
+  - /assets/images/projects/pressure/pressure2.png
 ---
 
 <h2>{{ title }}</h2>

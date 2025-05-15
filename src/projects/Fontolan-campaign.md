@@ -4,9 +4,9 @@ title: Fontolan Campaign
 tags: projects
 order: 2
 images:
-  - /assets/images/fontolan/1.png
-  - /assets/images/fontolan/2.png
-  - /assets/images/fontolan/3.png
+  - /assets/images/projects/fontolan/1.png
+  - /assets/images/projects/fontolan/2.png
+  - /assets/images/projects/fontolan/3.png
 ---
 
 <h2>{{ title }}</h2>
