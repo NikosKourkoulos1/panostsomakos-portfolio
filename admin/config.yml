@@ -1,0 +1,23 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "projects"
+    label: "Commissioned Projects"
+    folder: "src/commissioned"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Order", name: "order", widget: "number" }
+      - { label: "Images", name: "images", widget: "list", field: { label: Image, name: image, widget: image } }
+
+  - name: "private"
+    label: "Private Page"
+    file: "src/private.njk"
+    fields:
+      - { label: "Content", name: "body", widget: "markdown" }

@@ -1,0 +1,30 @@
+body {
+    font-family: 'Geist Mono', monospace;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #000;
+  }
+  
+  header {
+    padding: 20px;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  nav ul ul {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+  }
+  
+  nav ul li:hover ul {
+    display: block;
+  }
+  
