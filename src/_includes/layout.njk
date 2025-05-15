@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title or "Panos Tsomakos" }}</title>
-  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-  <header>
+  <header class="container">
     <h1>PANOS TSOMAKOS</h1>
     <nav>
       <a href="/private/">PRIVATE</a>
       <a href="#" id="commissioned-toggle">COMMISSIONED</a>
-      <ul id="commissioned-menu" style="display:none;">
+      <ul id="commissioned-menu">
         {% for project in collections.projects %}
           <li><a href="{{ project.url }}">{{ project.data.title }}</a></li>
         {% endfor %}
@@ -20,15 +20,16 @@
     </nav>
   </header>
 
-  <main>
+  <main class="container">
     {{ content | safe }}
   </main>
 
   <script>
     const toggle = document.getElementById('commissioned-toggle');
     const menu = document.getElementById('commissioned-menu');
-    toggle.addEventListener('click', () => {
-      menu.style.display = (menu.style.display === 'none') ? 'block' : 'none';
+    toggle.addEventListener('click', (e) => {
+      e.preventDefault();
+      menu.classList.toggle('show');
     });
   </script>
 </body>

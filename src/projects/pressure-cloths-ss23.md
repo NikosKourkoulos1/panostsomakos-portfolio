@@ -1,12 +1,11 @@
 ---
 layout: layout.njk
-title: Fontolan Campaign
+title: Pressure Clothes SS 23
 tags: projects
-order: 2
+order: 1
 images:
-  - /assets/images/fontolan/1.png
-  - /assets/images/fontolan/2.png
-  - /assets/images/fontolan/3.png
+  - /assets/images/pressure1.jpg
+  - /assets/images/pressure2.jpg
 ---
 
 <h2>{{ title }}</h2>
