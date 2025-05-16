@@ -2,7 +2,7 @@ backend:
   name: github
   repo: NikosKourkoulos1/panostsomakos-portfolio
   branch: master
-  auth_type: implicit
+  auth_type: web
   app_id: $GITHUB_CLIENT_ID
 
 
