@@ -12,6 +12,9 @@ module.exports = function(eleventyConfig) {
   // Passthrough copy for assets
   eleventyConfig.addPassthroughCopy("src/assets");
 
+  // Passthrough copy for admin
+  eleventyConfig.addPassthroughCopy("admin"); 
+
   // 404 page
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
