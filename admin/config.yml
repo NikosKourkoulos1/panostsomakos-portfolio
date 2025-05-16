@@ -1,9 +1,7 @@
 backend:
-  name: github
-  repo: NikosKourkoulos1/panostsomakos-portfolio
+  name: git-gateway
   branch: master
-  auth_type: implicit
-  app_id: $GITHUB_CLIENT_ID
+  auth_scope: repo
 
 media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
