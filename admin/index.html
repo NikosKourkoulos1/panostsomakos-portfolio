@@ -4,19 +4,42 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Content Manager</title>
+  <!-- Load CMS from CDN -->
   <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    #nc-root {
+      height: 100%;
+    }
+  </style>
 </head>
 <body>
-  <!-- Add this div as mount point for CMS -->
+  <!-- Mandatory mount point -->
   <div id="nc-root"></div>
-  
+
   <script>
-    // Initialize CMS after DOM loads
+    // Debugging script
     document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM fully loaded');
       if (window.CMS) {
+        console.log('CMS object available:', CMS);
         CMS.init();
+        CMS.registerPreviewStyle('/admin/cms.css'); // Optional for custom styles
       } else {
-        console.error('CMS script not loaded');
+        console.error('CMS script failed to load');
+        // Fallback loading
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js';
+        script.onload = () => {
+          console.log('Fallback CMS loaded');
+          CMS.init();
+        };
+        document.head.appendChild(script);
       }
     });
   </script>
