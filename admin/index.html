@@ -2,32 +2,35 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Content Manager</title>
+  <title>CMS</title>
+  <!-- Load CMS with fallback -->
+  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
   <style>
-    #nc-root {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+    #nc-root { 
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      width: 100%; 
+      height: 100%; 
     }
   </style>
 </head>
 <body>
-  <!-- Mount point must be present before CMS loads -->
+  <!-- Mount point MUST exist before CMS loads -->
   <div id="nc-root"></div>
 
-  <!-- Load CMS after mount point exists -->
-  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
-  
   <script>
-    // Verify CMS loaded properly
-    if (typeof CMS !== 'undefined') {
+    // Debugging and error handling
+    console.log("Script loaded");
+    if (window.CMS) {
       CMS.init();
-      console.log('CMS initialized successfully');
+      console.log("CMS initialized");
     } else {
-      console.error('CMS failed to load');
+      console.error("CMS failed to load. Retrying...");
+      const retry = document.createElement("script");
+      retry.src = "https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js";
+      retry.onload = () => CMS.init();
+      document.head.appendChild(retry);
     }
   </script>
 </body>

@@ -1,7 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: NikosKourkoulos1/panostsomakos-portfolio  # Your GitHub repo
   branch: master
-
+  auth_type: implicit  # Required for Netlify
+  app_id: $GITHUB_CLIENT_ID  # Netlify env variable
+  base_url: https://git-gateway.netlify.app  # Critical for Netlify
 
 media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
