@@ -3,17 +3,33 @@
 <head>
   <meta charset="utf-8">
   <title>Content Manager</title>
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
-    // Handle the GitHub callback
-    window.addEventListener('message', function(event) {
-      if (event.data.type === 'github-auth') {
-        window.location.href = `/admin/#/auth?code=${event.data.code}&state=${event.data.state}`;
+    // Initialize Netlify Identity
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        if (!user) {
+          window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+          });
+        }
+      });
+    }
+  </script>
+  <script src="https://unpkg.com/netlify-cms@2.10.192/dist/netlify-cms.js"></script>
+  <script>
+    CMS.init({
+      config: {
+        backend: {
+          name: 'git-gateway',
+          repo: 'NikosKourkoulos1/panostsomakos-portfolio',
+          branch: 'master'
+        }
       }
     });
   </script>
 </head>
 <body>
   <div id="nc-root"></div>
-  <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
 </body>
 </html>

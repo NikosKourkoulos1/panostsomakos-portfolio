@@ -4,18 +4,13 @@ module.exports = function(eleventyConfig) {
     return index < collection.length - 1 ? collection[index + 1] : null;
   });
   
-  // Collections
   eleventyConfig.addCollection("projects", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/projects/*.md").sort((a, b) => a.data.order - b.data.order);
   });
 
-  // Passthrough copy for assets
   eleventyConfig.addPassthroughCopy("src/assets");
+  eleventyConfig.addPassthroughCopy("admin"); // Copies admin folder (including index.html)
 
-  // Passthrough copy for admin
-  eleventyConfig.addPassthroughCopy("admin"); 
-
-  // 404 page
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: function(err, bs) {
