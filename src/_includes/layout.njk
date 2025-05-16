@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title or "Panos Tsomakos" }}</title>
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
   <header class="container">
@@ -31,6 +32,25 @@
       e.preventDefault();
       menu.classList.toggle('show');
     });
+
+    // Handle Netlify Identity confirmation token
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        const urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
+        const token = urlParams.get("confirmation_token");
+        if (token && !user) {
+          window.netlifyIdentity.on("login", () => {
+            window.location.href = "/admin/";
+          });
+          window.netlifyIdentity.open("login"); // Open login to process token
+        } else if (user) {
+          // If user is already logged in, redirect to admin
+          if (window.location.pathname !== "/admin/") {
+            window.location.href = "/admin/";
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
