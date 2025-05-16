@@ -2,7 +2,7 @@ backend:
   name: github
   repo: NikosKourkoulos1/panostsomakos-portfolio
   branch: master
-  auth_type: web  # Changed from 'implicit'
+  auth_type: implicit
   app_id: $GITHUB_CLIENT_ID
 
 

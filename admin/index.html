@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CMS</title>
+  <title>Content Manager</title>
   <script>
-    // Handle GitHub callback
-    window.addEventListener('message', function(event) {
+    // Handle the GitHub callback
+    window.addEventListener('message', (event) => {
       if (event.data.type === 'github-auth') {
         window.location.href = `/admin/#/auth?code=${event.data.code}&state=${event.data.state}`;
       }
