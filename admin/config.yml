@@ -7,10 +7,18 @@ media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "test"
-    label: "Test Content"
-    folder: "src/test" # This folder doesn't have to exist for the CMS to load
+  - name: "projects"
+    label: "Projects"
+    folder: "src/projects"
     create: true
+    slug: "{{slug}}"
     fields:
-      - {label: "Title", name: "title", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", default: 0 }
+      - { label: "Tags", name: "tags", widget: "list", default: ["projects"] }
+      - {
+          label: "Images",
+          name: "images",
+          widget: "list",
+          field: { label: "Image", name: "image", widget: "image" }
+        }
