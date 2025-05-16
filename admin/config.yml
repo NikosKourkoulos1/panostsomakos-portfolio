@@ -3,8 +3,7 @@ backend:
   repo: NikosKourkoulos1/panostsomakos-portfolio
   branch: master
   auth_type: implicit # Use implicit for GitHub OAuth
-  app_id: $GITHUB_CLIENT_ID # Ensure this is replaced with your actual Client ID in Netlify env vars
-
+  app_id: Ov23liNbWJkAk0jDWCUi
 media_folder: "src/images/uploads"
 public_folder: "/images/uploads"
 
