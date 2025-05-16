@@ -7,15 +7,28 @@
 </head>
 <body>
   <div id="nc-root"></div>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script> 
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   <script>
+    // Initialize Netlify Identity
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
+          // Handle login and confirmation
           window.netlifyIdentity.on("login", () => {
             document.location.href = "/admin/";
           });
+          window.netlifyIdentity.on("loginEnd", () => {
+            document.location.href = "/admin/";
+          });
+          // Check for confirmation token in URL
+          const urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
+          const token = urlParams.get("confirmation_token");
+          if (token) {
+            window.netlifyIdentity.open("login"); // Trigger login to process token
+          }
+        } else {
+          // User is logged in, initialize CMS
+          document.location.href = "/admin/#/";
         }
       });
     }
