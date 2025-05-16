@@ -5,7 +5,7 @@
   <title>Content Manager</title>
   <script>
     // Handle the GitHub callback
-    window.addEventListener('message', (event) => {
+    window.addEventListener('message', function(event) {
       if (event.data.type === 'github-auth') {
         window.location.href = `/admin/#/auth?code=${event.data.code}&state=${event.data.state}`;
       }
