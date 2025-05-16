@@ -2,8 +2,23 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>CMS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Manager</title>
   <script src="https://unpkg.com/netlify-cms@^2.10.0/dist/netlify-cms.js"></script>
 </head>
-<body></body>
+<body>
+  <!-- Add this div as mount point for CMS -->
+  <div id="nc-root"></div>
+  
+  <script>
+    // Initialize CMS after DOM loads
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.CMS) {
+        CMS.init();
+      } else {
+        console.error('CMS script not loaded');
+      }
+    });
+  </script>
+</body>
 </html>
