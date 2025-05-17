@@ -3,42 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
+  <title>{{ title or "About Panos Tsomakos" }}</title>
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <div class="background-wrapper">
-    <div class="background-image-1">
-      <img src="/assets/images/1.png" alt="First image">
-      <header class="nav-container nav-container-1">
-        <div class="nav-button panos-button">
-          <a href="/about/">PANOS TSOMAKOS</a>
-        </div>
-      </header>
+  <!-- Fixed Navigation Menu -->
+  <nav class="fixed-menu">
+    <div class="nav-button panos-button">
+      <a href="/">PANOS TSOMAKOS</a>
     </div>
-    <div class="background-image-2">
-      <img src="/assets/images/2.png" alt="Second image">
-      <header class="nav-container nav-container-2">
-        <div class="nav-button private-button">
-          <a href="/private/">PRIVATE</a>
-        </div>
-        <div class="nav-button commissioned-button">
-          <a href="#" id="commissioned-toggle">COMMISSIONED</a>
-        </div>
-        <ul id="commissioned-menu">
-          
-            <li><a href="/projects/pressure-cloths-ss23/">Pressure Clothes SS 23</a></li>
-          
-            <li><a href="/projects/Fontolan-campaign/">Fontolan Campaign</a></li>
-          
-        </ul>
-      </header>
+    <div class="nav-button private-button">
+      <a href="/private/">PRIVATE</a>
     </div>
-  </div>
+    <div class="nav-button commissioned-button">
+      <a href="#" id="commissioned-toggle">COMMISSIONED</a>
+    </div>
+    <ul id="commissioned-menu">
+      {% for project in collections.projects %}
+        <li><a href="{{ project.url }}">{{ project.data.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
 
-  <main class="container">
-    
+  <!-- Main Content with Image and Text -->
+  <main class="about-container">
+    {{ content | safe }}
   </main>
 
   <script>
@@ -47,8 +37,7 @@
     toggle.addEventListener('click', (e) => {
       e.preventDefault();
       menu.classList.toggle('show');
-      // Prevent scrolling to the bottom when dropdown opens
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0); // Prevent scrolling to bottom
     });
 
     if (window.netlifyIdentity) {

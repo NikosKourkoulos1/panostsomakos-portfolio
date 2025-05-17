@@ -16,7 +16,7 @@
 
 body {
   width: 100%;
-  min-height: 100vh;
+  height: auto; /* Adjust to content */
   overflow-x: hidden;
   overflow-y: auto; /* Enable vertical scrolling */
   font-family: 'Geist Mono', sans-serif;
@@ -24,56 +24,14 @@ body {
   position: relative;
 }
 
-/* Background Images */
-.background-wrapper {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-height: 100vh;
-}
-
-.background-image-1, .background-image-2 {
-  position: relative;
-  width: 50%; /* Side by side on desktop */
-}
-
-.background-image-1 img, .background-image-2 img {
-  width: 100%;
-  height: auto; /* Full image size, scrollable if larger than viewport */
-  display: block;
-}
-
 /* Root Variables */
 :root {
-  --text-black: #000;
-  --text-white: #fff;
-  --text-dark: rgba(10, 10, 17, 1);
+  --font-family-geist-mono: 'Geist Mono', sans-serif;
+  --text-black: rgba(0, 0, 0, 1);
 }
 
-/* Typography */
-h1, h2, p, a {
-  font-family: 'Geist Mono', sans-serif;
+.text-black {
   color: var(--text-black);
-}
-
-h1 {
-  font-size: 14px;
-  font-weight: normal;
-  text-transform: uppercase;
-}
-
-a {
-  text-decoration: none;
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-p {
-  font-size: 14px;
-  line-height: 16px;
-  font-weight: 500;
 }
 
 /* Images */
@@ -85,18 +43,35 @@ img {
 
 /* Layout */
 .container {
-  padding-left: 24px;
-  padding-right: 24px;
+  padding: 0; /* Remove padding to avoid extra space on homepage */
 }
 
 @media (max-width: 768px) {
   .container {
-    padding-left: 16px;
-    padding-right: 16px;
+    padding: 0;
   }
 }
 
-/* Header and Navigation for Desktop */
+/* Background Images (for Homepage) */
+.background-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto; /* Adjust to content */
+}
+
+.background-image-1, .background-image-2 {
+  position: relative;
+  width: 50%; /* Side by side on desktop */
+  height: auto; /* Adjust to image content */
+}
+
+.background-image-1 img, .background-image-2 img {
+  width: 100%;
+  height: auto; /* Full image size */
+}
+
+/* Header and Navigation for Homepage */
 .nav-container {
   position: absolute;
   top: 0;
@@ -107,70 +82,259 @@ img {
   padding: 0 24px;
 }
 
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 0 16px;
+  }
+}
+
 /* General Button Styling */
 .nav-button {
   position: absolute;
 }
 
-/* DESKTOP: Positioning for "PANOS TSOMAKOS" */
+.nav-button a {
+  text-decoration: none; /* Remove underline from all links */
+}
+
+/* DESKTOP: Positioning for Homepage Buttons */
 .panos-button {
   /* DESKTOP: Adjust Position for "PANOS TSOMAKOS" */
-  top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
-  left: 10%; /* Move horizontally (e.g., 20% to move right) */
-  /* Use right or bottom if needed (e.g., right: 10%) */
+  top: 50%; /* Move vertically */
+  left: 40%; /* Move horizontally */
+  /* Use right or bottom if needed */
+  color: #000000;
+  background-color: transparent;
+  font-size: 14px;
+  padding: 5px 10px;
 }
 
-/* DESKTOP: Positioning for "PRIVATE" */
 .private-button {
   /* DESKTOP: Adjust Position for "PRIVATE" */
-  top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
-  right: 20%; /* Move horizontally (e.g., 10% to move left) */
-  /* Use left or bottom if needed (e.g., left: 10%) */
+  top: 50%;
+  right: 20%;
+  /* Use left or bottom if needed */
+  color: #000000;
+  background-color: transparent;
+  font-size: 14px;
+  padding: 5px 10px;
 }
 
-/* DESKTOP: Positioning for "COMMISSIONED" */
 .commissioned-button {
   /* DESKTOP: Adjust Position for "COMMISSIONED" */
-  top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
-  right: 10%; /* Move horizontally (e.g., 5% to move left) */
-  /* Use left or bottom if needed (e.g., left: 10%) */
+  top: 50%;
+  right: 10%;
+  /* Use left or bottom if needed */
+  color: #000000;
+  background-color: transparent;
+  font-size: 14px;
+  padding: 5px 10px;
 }
 
-/* Mobile Adjustments */
 @media (max-width: 768px) {
-  .background-wrapper {
+  .panos-button {
+    top: 50%;
+    left: 40%;
+    color: #000000;
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+  .panos-button a {
+    color: #ffffff;
+  }
+  .private-button {
+    top: 50%;
+    right: 20%;
+    color: #000000;
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+  .commissioned-button {
+    top: 50%;
+    right: 10%;
+    color: #000000;
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+}
+
+/* Fixed Menu for About Page */
+.fixed-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 24px;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .fixed-menu {
+    padding: 10px 16px;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* About Page Layout */
+.about-container {
+  padding-top: 60px; /* Space for fixed menu */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 24px;
+}
+
+.about-page {
+  display: flex;
+  width: 100%;
+}
+
+.about-image {
+  flex: 0 0 50%; /* Image takes 50% width */
+  height: auto;
+}
+
+.about-text {
+  flex: 0 0 50%; /* Text takes 50% width */
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.menu-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+/* Figma Text Styles */
+.drkrm_xprnc-14-2-1-2 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  width: 100%;
+  height: auto;
+}
+
+.text-3 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-geist-mono);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.text-4 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-geist-mono);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.text-5 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-geist-mono);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.text-6 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-geist-mono);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: var(--text-black);
+}
+
+.text-7 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-geist-mono);
+  font-weight: normal;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.text-8 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-geist-mono);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.text-9 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-geist-mono);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+.text-10 {
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto;
+  font-family: var(--font-family-geist-mono);
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: none;
+  color: var(--text-black);
+}
+
+@media (max-width: 768px) {
+  .about-container {
+    padding: 16px;
+  }
+  .about-page {
     flex-direction: column;
   }
-  .background-image-1, .background-image-2 {
-    width: 100%; /* Stack vertically on mobile */
+  .about-image, .about-text {
+    flex: 0 0 100%; /* Stack on mobile */
   }
-  
-  .nav-container {
-    padding: 0 16px;
-  }
-  
-  /* MOBILE: Positioning for "PANOS TSOMAKOS" on First Image */
-  .panos-button {
-    /* MOBILE: Adjust Position for "PANOS TSOMAKOS" */
-    top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
-    left: 10%; /* Move horizontally (e.g., 20% to move right) */
-    /* Use right or bottom if needed (e.g., right: 10%) */
-  }
-  
-  /* MOBILE: Positioning for "PRIVATE" on Second Image */
-  .private-button {
-    /* MOBILE: Adjust Position for "PRIVATE" */
-    top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
-    right: 20%; /* Move horizontally (e.g., 10% to move left) */
-    /* Use left or bottom if needed (e.g., left: 10%) */
-  }
-  
-  /* MOBILE: Positioning for "COMMISSIONED" on Second Image */
-  .commissioned-button {
-    /* MOBILE: Adjust Position for "COMMISSIONED" */
-    top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
-    right: 10%; /* Move horizontally (e.g., 5% to move left) */
-    /* Use left or bottom if needed (e.g., left: 10%) */
+  .about-text {
+    padding-left: 0;
+    padding-top: 20px;
   }
 }
 
@@ -179,31 +343,24 @@ img {
   display: none;
   flex-direction: column;
   gap: 0.5rem;
-  position: absolute;
-  top: 100%;
-  left: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background: rgba(255, 255, 255, 0.9);
   padding: 1rem;
   border: 1px solid var(--text-black);
-  width: 100%;
+  width: 200px;
+  z-index: 1000;
 }
 
 #commissioned-menu.show {
   display: flex;
 }
 
-#commissioned-menu li {
-  list-style: none;
-}
-
-#commissioned-menu a {
-  font-size: 14px;
-  line-height: 20px;
-}
-
 /* Main Content */
 main {
-  padding: 2rem 0;
+  padding: 0;
 }
 
 main img {

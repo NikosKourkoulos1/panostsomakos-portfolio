@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About</title>
+  <title>About Panos Tsomakos</title>
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
@@ -39,16 +39,8 @@
 
   <main class="container">
     
-<img src="/images/about.npg" alt="Portrait of Panos" />
-
-<p>Panos Tsomakos is a photographer with a deep passion for film and experimental techniques...</p>
-
-<p>INSTAGRAM: PANOSCR<br>
-MAIL: PANOS@TSOMAKOS.COM</p>
-
-<p>WEB DESIGN: SOULIOTIS</p>
-<p>© All images are copyrighted and owned by PANOS TSOMAKOS</p>
-
+<h1>About Panos Tsomakos</h1>
+<p>Welcome to the about page! Here you can learn more about Panos Tsomakos.</p>
   </main>
 
   <script>
@@ -57,6 +49,8 @@ MAIL: PANOS@TSOMAKOS.COM</p>
     toggle.addEventListener('click', (e) => {
       e.preventDefault();
       menu.classList.toggle('show');
+      // Prevent scrolling to the bottom when dropdown opens
+      window.scrollTo(0, 0);
     });
 
     if (window.netlifyIdentity) {
