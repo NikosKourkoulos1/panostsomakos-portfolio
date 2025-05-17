@@ -4,7 +4,7 @@ module.exports = function(eleventyConfig) {
     return index < collection.length - 1 ? collection[index + 1] : null;
   });
   
-  eleventyConfig.addCollection("projects", function(collectionApi) {
+  eleventyConfig.addCollection("project", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/projects/*.md").sort((a, b) => a.data.order - b.data.order);
   });
 

@@ -18,8 +18,29 @@ body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto; /* Enable vertical scrolling */
   font-family: 'Geist Mono', sans-serif;
   background: #fff;
+  position: relative;
+}
+
+/* Background Images */
+.background-wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.background-image-1, .background-image-2 {
+  position: relative;
+  width: 50%; /* Side by side on desktop */
+}
+
+.background-image-1 img, .background-image-2 img {
+  width: 100%;
+  height: auto; /* Full image size, scrollable if larger than viewport */
+  display: block;
 }
 
 /* Root Variables */
@@ -75,22 +96,82 @@ img {
   }
 }
 
-/* Header */
-header {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  padding: 2rem 0;
+/* Header and Navigation for Desktop */
+.nav-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  padding: 0 24px;
 }
 
-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+/* General Button Styling */
+.nav-button {
+  position: absolute;
 }
 
-nav a {
-  margin-bottom: 0.5rem;
+/* DESKTOP: Positioning for "PANOS TSOMAKOS" */
+.panos-button {
+  /* DESKTOP: Adjust Position for "PANOS TSOMAKOS" */
+  top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
+  left: 10%; /* Move horizontally (e.g., 20% to move right) */
+  /* Use right or bottom if needed (e.g., right: 10%) */
+}
+
+/* DESKTOP: Positioning for "PRIVATE" */
+.private-button {
+  /* DESKTOP: Adjust Position for "PRIVATE" */
+  top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
+  right: 20%; /* Move horizontally (e.g., 10% to move left) */
+  /* Use left or bottom if needed (e.g., left: 10%) */
+}
+
+/* DESKTOP: Positioning for "COMMISSIONED" */
+.commissioned-button {
+  /* DESKTOP: Adjust Position for "COMMISSIONED" */
+  top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
+  right: 10%; /* Move horizontally (e.g., 5% to move left) */
+  /* Use left or bottom if needed (e.g., left: 10%) */
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+  .background-wrapper {
+    flex-direction: column;
+  }
+  .background-image-1, .background-image-2 {
+    width: 100%; /* Stack vertically on mobile */
+  }
+  
+  .nav-container {
+    padding: 0 16px;
+  }
+  
+  /* MOBILE: Positioning for "PANOS TSOMAKOS" on First Image */
+  .panos-button {
+    /* MOBILE: Adjust Position for "PANOS TSOMAKOS" */
+    top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
+    left: 10%; /* Move horizontally (e.g., 20% to move right) */
+    /* Use right or bottom if needed (e.g., right: 10%) */
+  }
+  
+  /* MOBILE: Positioning for "PRIVATE" on Second Image */
+  .private-button {
+    /* MOBILE: Adjust Position for "PRIVATE" */
+    top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
+    right: 20%; /* Move horizontally (e.g., 10% to move left) */
+    /* Use left or bottom if needed (e.g., left: 10%) */
+  }
+  
+  /* MOBILE: Positioning for "COMMISSIONED" on Second Image */
+  .commissioned-button {
+    /* MOBILE: Adjust Position for "COMMISSIONED" */
+    top: 50%; /* Move vertically (e.g., 25% for higher, 75% for lower) */
+    right: 10%; /* Move horizontally (e.g., 5% to move left) */
+    /* Use left or bottom if needed (e.g., left: 10%) */
+  }
 }
 
 /* Dropdown Menu */
@@ -98,7 +179,13 @@ nav a {
   display: none;
   flex-direction: column;
   gap: 0.5rem;
-  padding-left: 1rem;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 1rem;
+  border: 1px solid var(--text-black);
+  width: 100%;
 }
 
 #commissioned-menu.show {

@@ -5,25 +5,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <header class="container">
-    <h1>PANOS TSOMAKOS</h1>
-    <nav>
-      <a href="/private/">PRIVATE</a>
-      <a href="#" id="commissioned-toggle">COMMISSIONED</a>
-      <ul id="commissioned-menu">
-        
-          <li><a href="/projects/pressure-cloths-ss23/">Pressure Clothes SS 23</a></li>
-        
-          <li><a href="/projects/Fontolan-campaign/">Fontolan Campaign</a></li>
-        
-      </ul>
-    </nav>
-  </header>
+  <div class="background-wrapper">
+    <div class="background-image-1">
+      <img src="/assets/images/1.png" alt="First image">
+      <header class="nav-container nav-container-1">
+        <div class="nav-button panos-button">
+          <a href="/about/">PANOS TSOMAKOS</a>
+        </div>
+      </header>
+    </div>
+    <div class="background-image-2">
+      <img src="/assets/images/2.png" alt="Second image">
+      <header class="nav-container nav-container-2">
+        <div class="nav-button private-button">
+          <a href="/private/">PRIVATE</a>
+        </div>
+        <div class="nav-button commissioned-button">
+          <a href="#" id="commissioned-toggle">COMMISSIONED</a>
+        </div>
+        <ul id="commissioned-menu">
+          
+            <li><a href="/projects/pressure-cloths-ss23/">Pressure Clothes SS 23</a></li>
+          
+            <li><a href="/projects/Fontolan-campaign/">Fontolan Campaign</a></li>
+          
+        </ul>
+      </header>
+    </div>
+  </div>
 
   <main class="container">
-    <img src="/assets/images/homepage-image.png" alt="Homepage image">
+    
   </main>
 
   <script>
@@ -33,6 +48,23 @@
       e.preventDefault();
       menu.classList.toggle('show');
     });
+
+    if (window.netlifyIdentity) {
+      window.netlifyIdentity.on("init", user => {
+        const urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
+        const token = urlParams.get("confirmation_token");
+        if (token && !user) {
+          window.netlifyIdentity.on("login", () => {
+            window.location.href = "/admin/";
+          });
+          window.netlifyIdentity.open("login");
+        } else if (user) {
+          if (window.location.pathname !== "/admin/") {
+            window.location.href = "/admin/";
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>

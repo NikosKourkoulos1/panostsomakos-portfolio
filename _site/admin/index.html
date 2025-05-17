@@ -7,14 +7,15 @@
 </head>
 <body>
   <div id="nc-root"></div>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script> <!-- Match simple app version -->
+  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   <script>
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         if (!user) {
           window.netlifyIdentity.on("login", () => {
-            document.location.href = "/admin/";
+            window.location.href = "/admin/";
           });
+          window.netlifyIdentity.open(); // Open the widget for signup/login
         }
       });
     }

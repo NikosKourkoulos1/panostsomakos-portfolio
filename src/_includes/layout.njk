@@ -8,18 +8,32 @@
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </head>
 <body>
-  <header class="container">
-    <h1>PANOS TSOMAKOS</h1>
-    <nav>
-      <a href="/private/">PRIVATE</a>
-      <a href="#" id="commissioned-toggle">COMMISSIONED</a>
-      <ul id="commissioned-menu">
-        {% for project in collections.projects %}
-          <li><a href="{{ project.url }}">{{ project.data.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </nav>
-  </header>
+  <div class="background-wrapper">
+    <div class="background-image-1">
+      <img src="/assets/images/1.png" alt="First image">
+      <header class="nav-container nav-container-1">
+        <div class="nav-button panos-button">
+          <a href="/about/">PANOS TSOMAKOS</a>
+        </div>
+      </header>
+    </div>
+    <div class="background-image-2">
+      <img src="/assets/images/2.png" alt="Second image">
+      <header class="nav-container nav-container-2">
+        <div class="nav-button private-button">
+          <a href="/private/">PRIVATE</a>
+        </div>
+        <div class="nav-button commissioned-button">
+          <a href="#" id="commissioned-toggle">COMMISSIONED</a>
+        </div>
+        <ul id="commissioned-menu">
+          {% for project in collections.projects %}
+            <li><a href="{{ project.url }}">{{ project.data.title }}</a></li>
+          {% endfor %}
+        </ul>
+      </header>
+    </div>
+  </div>
 
   <main class="container">
     {{ content | safe }}
@@ -33,7 +47,6 @@
       menu.classList.toggle('show');
     });
 
-    // Handle Netlify Identity confirmation token
     if (window.netlifyIdentity) {
       window.netlifyIdentity.on("init", user => {
         const urlParams = new URLSearchParams(window.location.hash.replace("#", "?"));
@@ -42,9 +55,8 @@
           window.netlifyIdentity.on("login", () => {
             window.location.href = "/admin/";
           });
-          window.netlifyIdentity.open("login"); // Open login to process token
+          window.netlifyIdentity.open("login");
         } else if (user) {
-          // If user is already logged in, redirect to admin
           if (window.location.pathname !== "/admin/") {
             window.location.href = "/admin/";
           }
